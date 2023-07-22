@@ -29,6 +29,7 @@ Steps to build buildroot sdcard image:
    sudo dd if=./output/images/sdcard.img of=/dev/sda bs=4096 conv=notrunc,fsync
 
 4. cd ~/build-buildroot-4SBCs/radxa
+   sudo apt-get install libgnutls28-dev
    git clone git://git.buildroot.net/buildroot
    cp ./patches/rockpi4_defconfig ./buildroot/configs
    \rm -rf ./buildroot/board/radxa/rockpi-4
@@ -55,8 +56,6 @@ Steps to build buildroot sdcard image:
    cd buildroot
    make clean
    make rk3328_defconfig
-   make uboot   ( ignore binman errors )
-   vi ./output/build/uboot*/arch/arm/Kconfig delete BINMAN in ARCH_ROCKCHIP
    make
 
    The result is in ./output/images/sdcard.img

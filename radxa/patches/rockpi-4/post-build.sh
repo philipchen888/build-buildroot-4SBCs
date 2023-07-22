@@ -1,13 +1,13 @@
 #!/bin/sh
 
-MKIMAGE=$BUILD_DIR/uboot-stable-4.4-rockpi4/tools/mkimage
+MKIMAGE=$BUILD_DIR/uboot-u-boot-2023.07.y/tools/mkimage
 RKBIN=$BUILD_DIR/../../../rkbin
 BOARD_DIR="$(dirname $0)"
 
 $MKIMAGE -n rk3399 -T rksd -d $RKBIN/bin/rk33/rk3399_ddr_800MHz_v1.20.bin $BINARIES_DIR/idbloader.img
 cat $RKBIN/bin/rk33/rk3399_miniloader_v1.19.bin >> $BINARIES_DIR/idbloader.img
 
-$RKBIN/tools/loaderimage --pack --uboot $BUILD_DIR/uboot-stable-4.4-rockpi4/u-boot-dtb.bin $BINARIES_DIR/uboot.img 0x200000 --size 1024 1
+$RKBIN/tools/loaderimage --pack --uboot $BUILD_DIR/uboot-u-boot-2023.07.y/u-boot-dtb.bin $BINARIES_DIR/uboot.img 0x200000 --size 1024 1
 
 cp $RKBIN/bin/rk33/rk3399_bl31_v1.26.elf .
 cat >trust.ini <<EOF
